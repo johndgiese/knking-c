@@ -8,7 +8,7 @@ typedef struct {
     int twenties;
 } billbreakdown;
 
-int prompt_for_amount();
+unsigned int prompt_for_amount();
 
 billbreakdown breakdown_amount(int amount);
 

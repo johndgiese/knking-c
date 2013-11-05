@@ -7,7 +7,7 @@
 
 int main(void) {
 
-    float a = prompt_for_amount();
+    unsigned int a = prompt_for_amount();
 
     billbreakdown b = breakdown_amount(a);
 

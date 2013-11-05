@@ -2,27 +2,55 @@
 #include <stdbool.h>
 
 #include <stdio.h>
+#include <string.h>
 
 #include "util.h"
 
 
-int prompt_for_amount() {
+void clear_stream(FILE *stream) {
+    fscanf(stream, "%*[^\n]");
+    fscanf(stream, "%*c");
+}
 
-    int amount;
+
+char *read_line(char *buffer, size_t buffer_length, FILE *stream) {
+    char *line;
+
+    line = fgets(buffer, buffer_length, stream);
+
+    if (line) {
+        size_t last_char_i = strlen(buffer) - 1;
+
+        if (buffer[last_char_i] == '\n') {
+            buffer[last_char_i] = '\0';
+        } else {
+            clear_stream(stream);
+        }
+    }
+    return line;
+}
+
+
+unsigned int grab_single_number(unsigned int *number_p) {
+    int status = scanf("%u", number_p);
+
+    return 1234;
+}
+
+
+unsigned int prompt_for_amount() {
+    unsigned int amount;
 
     while (true) {
         printf("Enter a dollar amount: ");
-        int status = scanf("%d", &amount);
+        int status = grab_single_number(&amount);
 
-        /* TODO: get input error checking working
-        if (status != 1 or amount < 0) {
-            printf("Values must be non-negative whole numbers.\n");
+        if (status) {
+            printf("Values must be whole numbers.\n");
         } else {
             break;
         }
-        */
     }
-
     return amount;
 }
 
