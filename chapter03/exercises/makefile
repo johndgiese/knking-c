@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-c -Wall -pedantic -ansi -std=c99
 LDFLAGS=
-SOURCES=main.c util.c
+SOURCES=main.c
 OBJECTS=$(SOURCES:.c=.o)
 
 EXECUTABLE=main.out
